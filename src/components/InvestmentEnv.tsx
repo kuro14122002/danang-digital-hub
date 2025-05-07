@@ -1,5 +1,5 @@
 
-import { Network, Factory, Road, Leaf, Building, Users, Award, Laptop } from "lucide-react";
+import { Network, Factory, Map, Leaf, Building, Users, Award, Laptop } from "lucide-react";
 
 interface InvestmentEnvProps {
   currentLang: string;
@@ -16,7 +16,7 @@ const InvestmentEnv = ({ currentLang }: InvestmentEnvProps) => {
       href: "#"
     },
     {
-      icon: Road,
+      icon: Map,
       title: currentLang === "vi" ? "Giao thông" : "Transportation",
       description: currentLang === "vi" 
         ? "Kết nối đa phương thức" 
