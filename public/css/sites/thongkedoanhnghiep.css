@@ -1,0 +1,10 @@
+.pagination-custom {
+  position: sticky;
+  left: 0;
+  right: 0;
+}
+
+.col-tieude {
+  background: #004fa0;
+  color: white;
+}

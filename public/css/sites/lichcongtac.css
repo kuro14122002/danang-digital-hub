@@ -1,0 +1,127 @@
+.lich-cong-tac-container {
+  padding-left: calc(var(--bs-gutter-x) * 3.6);
+  padding-right: calc(var(--bs-gutter-x) * 3.6);
+}
+
+.lich-cong-tac {
+  text-align: left;
+}
+
+.lich-cong-tac-dropdown {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 30px;
+}
+
+.btn-lichcongtac {
+  width: auto;
+  background-color: #004fa0;
+  color: #ffffff;
+  border: 1px solid #004fa0;
+  border-radius: 25px;
+  padding: 8px 16px;
+  width: 167px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.btn-lichcongtac:hover {
+  background-color: #ea8823;
+  color: #ffffff;
+  border-color: #ea8823;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 79, 160, 0.5);
+}
+
+/* Căn giữa và in đậm tiêu đề bảng */
+.lich-cong-tac-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Tùy chỉnh bảng */
+.lich-cong-tac-table-custom {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+/* Thêm border-radius cho thead */
+.lich-cong-tac-table-custom thead {
+  background-color: #004fa0;
+  color: white;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.lich-cong-tac-table-custom th:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border: none;
+}
+
+.lich-cong-tac-table-custom th:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: none;
+}
+
+.lich-cong-tac-table-custom th,
+.lich-cong-tac-table-custom td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.lich-cong-tac-table-custom th {
+  background-color: #004fa0;
+  color: white;
+  text-align: center;
+}
+
+.lich-cong-tac-table-custom tr.grouped-day {
+  background-color: #f0f8ff; /* Màu nền khác biệt cho từng thứ */
+}
+
+/* Phân biệt màu giữa các nhóm row */
+.lich-cong-tac-group-odd {
+  background-color: #fbfbfb; /* Màu nền nhạt */
+}
+
+.lich-cong-tac-group-even {
+  background-color: #004fa00a; /* Màu nền khác */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lich-cong-tac-container {
+    padding-left: calc(var(--bs-gutter-x));
+    padding-right: calc(var(--bs-gutter-x));
+  }
+
+  .lich-cong-tac {
+    text-align: center;
+  }
+
+  .lich-cong-tac-dropdown {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .lich-cong-tac-button {
+    width: 100%;
+  }
+
+  .lich-cong-tac-table-wrapper-custom {
+    overflow-x: auto; /* Thêm thanh scroll ngang */
+    -webkit-overflow-scrolling: touch; /* Mượt hơn khi scroll trên mobile */
+  }
+
+  .lich-cong-tac-table-custom {
+    min-width: 1300px; /* Đặt độ rộng tối thiểu cho bảng để hiển thị tốt hơn */
+  }
+}

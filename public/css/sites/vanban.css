@@ -1,0 +1,154 @@
+.container-fluid.vanban-container {
+  padding-left: calc(var(--bs-gutter-x) * 3.6);
+  padding-right: calc(var(--bs-gutter-x) * 3.6);
+}
+
+.dmvanban {
+  text-decoration: none;
+  color: #151414;
+  border: 1px solid #efefef;
+  border-radius: 6px;
+  height: 54px;
+}
+
+.dmvanban:hover {
+  background-color: #f8f9fa;
+  color: #151414;
+  font-weight: bold;
+}
+
+.active-vanban {
+  background-color: #004fa0;
+  color: white;
+}
+
+.active-vanban:hover {
+  background-color: #004fa0;
+  color: white;
+}
+
+.form-timkiem button,
+.form-mobi button {
+  background-color: #004fa0;
+  border-radius: 100px;
+  color: #ffffff;
+  width: 167px;
+  height: 48px;
+}
+
+.form-timkiem button:hover,
+.form-mobi button:hover {
+  color: #004fa0;
+  background-color: #ea8823;
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 79, 160, 0.5);
+}
+
+.fixed-btn-left {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 1000;
+  margin: 0;
+  background-color: #004fa0;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border: none;
+  width: 56px;
+  height: 56px;
+}
+
+.hr-dsvanban {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.span-ngay {
+  font-size: small;
+  color: #62646a;
+}
+
+.trichyeu-vanban {
+  text-align: justify;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.tieude-vanban {
+  text-decoration: none;
+  color: #004fa0;
+}
+
+.tieude-vanban:hover {
+  text-decoration: underline;
+  color: #ea8823;
+}
+
+.row-description {
+  border-bottom: 1px solid #4e80b3;
+  padding-bottom: 0.5rem;
+  padding-top: 1rem;
+}
+
+.icon-container {
+  background: #004fa00d;
+  height: 4rem;
+  width: 4rem;
+}
+
+@media (max-width: 576px) {
+  .container-fluid.vanban-container {
+    padding-left: calc(var(--bs-gutter-x));
+    padding-right: calc(var(--bs-gutter-x));
+  }
+
+  .form-timkiem button,
+  .form-mobi button {
+    width: 100%;
+    height: 48px;
+  }
+
+  .trichyeu-vanban {
+    font-size: small;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+}
+
+.tieude-vanban {
+  text-decoration: none;
+  color: #004fa0;
+}
+
+.tieude-vanban:hover {
+  text-decoration: underline;
+  color: #ea8823;
+}
+@media (max-width: 767px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (max-width: 992px) {
+}
+
+.page-item.active .circle-link {
+  background-color: #004fa0;
+  border-color: #004fa0;
+  color: white;
+}

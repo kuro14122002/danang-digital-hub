@@ -1,0 +1,133 @@
+.contact-title {
+  font-weight: 500;
+  font-size: 17px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.contact-icon {
+  width: 18px;
+  height: 20px;
+}
+
+/*danh mục phòng ban*/
+.contact-info {
+  border-top: 1px solid #efefef;
+}
+
+.bg-light-info {
+  border: 1px solid #efefef;
+}
+
+.title-info {
+  font-size: 16px;
+}
+.dmphongban {
+  text-decoration: none;
+  color: #151414;
+  border: 1px solid #efefef;
+  border-radius: 6px;
+  min-height: 54px;
+  padding-left: 15px;
+}
+
+.dmphongban:hover {
+  background-color: #f8f9fa;
+  color: #151414;
+  font-weight: bold;
+}
+
+.phongban-icon {
+  color: #ea8823;
+  font-size: 15px;
+  padding-right: 10px;
+}
+
+.phongban-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.phongban-item:hover {
+  color: #ea8823;
+}
+
+.subphongban {
+  display: none;
+  list-style: none;
+  display: none;
+  margin: 0;
+}
+
+.subphongban-item {
+  padding: 5px 0;
+}
+
+.icon-block {
+  width: 24px;
+}
+
+.phongban-link:hover {
+  background-color: #f8f9fa;
+  color: #ea8823;
+}
+
+.subphongban.open {
+  display: block;
+}
+
+.phongban-icon.rotated svg {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}
+
+/*contact card*/
+.contact-card .card-header {
+  background: #ea88231a;
+  padding: 15px 0px 15px 25px;
+}
+
+.contact-card .card-body {
+  padding-left: 25px;
+}
+
+#infoCarousel .carousel-inner {
+  overflow: visible;
+}
+
+.dmphongban.active,
+.lienHeTab.active {
+  background-color: #004fa0 !important;
+  border-color: #004fa0 !important;
+  color: white !important;
+}
+/*Gửi mail liên hệ*/
+.form-guiemail button {
+  background-color: #004fa0;
+  border-radius: 100px;
+  color: #ffffff;
+  width: 167px;
+  height: 48px;
+}
+
+.form-guiemail button:hover {
+  background-color: #004fa0;
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 79, 160, 0.5);
+}
+
+@media (max-width: 576px) {
+  .form-guiemail button {
+    width: 100%;
+    height: 48px;
+  }
+}
+
+.phongban-title {
+  text-decoration: none;
+  color: #151414;
+}
+.dmphongban.active a {
+  color: white;
+}
