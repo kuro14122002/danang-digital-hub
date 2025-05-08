@@ -1,33 +1,38 @@
+
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCreative } from 'swiper/modules';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
-import '/public/css/sites/styles.css'; // Import SCSS/CSS gốc nếu cần
+import '/public/css/sites/styles.css';
 
-const slides = [
-  {
-    bg: '/media/uh1bpkyt/kcnc.png',
-    title: 'KHU CÔNG NGHỆ CAO ĐÀ NẴNG',
-    subtitle: 'VR 360 TOUR - KHU CÔNG NGHỆ CAO ĐÀ NẴNG (DEMO)',
-    btn: { text: 'Xem thêm', link: '/vr360/' },
-  },
-  {
-    bg: '/media/cplcsjnm/mg7153-16981361351081529439819.jpg',
-    title: 'Welcome to',
-    subtitle: 'Ban Quản lý Khu công nghệ cao và các khu công nghiệp Đà Nẵng',
-    btn: { text: 'Xem thêm', link: '/chi-tiet-tin-tuc/thu-ngo/' },
-  },
-  {
-    bg: '/media/t1xnwdpz/cdc.png',
-    title: 'CDC ĐÀ NẴNG - CỘNG ĐỒNG PHÒNG CHỐNG DỊCH',
-    subtitle: 'Hãy Like và Follow Fanpage "CDC Đà Nẵng - Cộng Đồng Phòng Chống Dịch" để cùng nhau chung tay phòng chống dịch bệnh!',
-    btn: { text: 'Xem thêm', link: 'https://www.facebook.com/CDCDaNangCongdongPhongChongDich' },
-  },
-];
+interface BannerProps {
+  currentLang?: string;
+}
 
-const Banner: React.FC = () => {
+const Banner: React.FC<BannerProps> = ({ currentLang = "vi" }) => {
+  const slides = [
+    {
+      bg: '/media/uh1bpkyt/kcnc.png',
+      title: currentLang === "vi" ? 'KHU CÔNG NGHỆ CAO ĐÀ NẴNG' : 'DA NANG HI-TECH PARK',
+      subtitle: currentLang === "vi" ? 'VR 360 TOUR - KHU CÔNG NGHỆ CAO ĐÀ NẴNG (DEMO)' : 'VR 360 TOUR - DA NANG HI-TECH PARK (DEMO)',
+      btn: { text: currentLang === "vi" ? 'Xem thêm' : 'Learn more', link: '/vr360/' },
+    },
+    {
+      bg: '/media/cplcsjnm/mg7153-16981361351081529439819.jpg',
+      title: currentLang === "vi" ? 'Chào mừng đến với' : 'Welcome to',
+      subtitle: currentLang === "vi" ? 'Ban Quản lý Khu công nghệ cao và các khu công nghiệp Đà Nẵng' : 'Da Nang Hi-Tech Park and Industrial Zones Authority',
+      btn: { text: currentLang === "vi" ? 'Xem thêm' : 'Learn more', link: '/chi-tiet-tin-tuc/thu-ngo/' },
+    },
+    {
+      bg: '/media/t1xnwdpz/cdc.png',
+      title: currentLang === "vi" ? 'CDC ĐÀ NẴNG - CỘNG ĐỒNG PHÒNG CHỐNG DỊCH' : 'DA NANG CDC - DISEASE PREVENTION COMMUNITY',
+      subtitle: currentLang === "vi" ? 'Hãy Like và Follow Fanpage "CDC Đà Nẵng - Cộng Đồng Phòng Chống Dịch" để cùng nhau chung tay phòng chống dịch bệnh!' : 'Like and Follow "Da Nang CDC - Disease Prevention Community" Fanpage to join hands in disease prevention!',
+      btn: { text: currentLang === "vi" ? 'Xem thêm' : 'Learn more', link: 'https://www.facebook.com/CDCDaNangCongdongPhongChongDich' },
+    },
+  ];
+
   return (
     <div className="swiper custom-home-banner" style={{ position: 'relative' }}>
       <Swiper
