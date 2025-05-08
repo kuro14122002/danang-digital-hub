@@ -2,10 +2,9 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCreative } from 'swiper/modules';
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
-import '/public/css/sites/styles.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface BannerProps {
   currentLang?: string;

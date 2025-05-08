@@ -1,16 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
 import { Search, User, Menu, X } from "lucide-react";
 import Navigation from "./Navigation";
-import logo from '/public/media/vdyfdo3s/dzesa_logo_home_noback.png';
-import vnFlag from '/public/media/1rdhyfzn/vnflag.png';
-// Nếu có cờ tiếng Anh, import tương tự
-// import enFlag from '/public/media/ftwlb1c0/usflag.png';
 
 const Header: React.FC = () => {
   const [currentLang, setCurrentLang] = useState('vi');
   const [date, setDate] = useState(new Date());
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // Nếu có nhiều ngôn ngữ, có thể mở rộng thêm state
 
   useEffect(() => {
     const timer = setInterval(() => setDate(new Date()), 1000);
@@ -31,10 +27,6 @@ const Header: React.FC = () => {
     return `${day} - ${dateNum}/${month}/${year} ${hours}:${minutes}:${seconds}`;
   };
 
-  const toggleLanguage = () => {
-    setCurrentLang(currentLang === "vi" ? "en" : "vi");
-  };
-
   return (
     <header className="w-full">
       {/* Top Bar */}
@@ -51,7 +43,7 @@ const Header: React.FC = () => {
             <span className="border-l border-white h-4"></span>
             <div className="flex items-center gap-2">
               <img 
-                src={vnFlag} 
+                src="/media/1rdhyfzn/vnflag.png" 
                 alt="Language Flag" 
                 className="w-5 h-3"
               />
@@ -79,7 +71,7 @@ const Header: React.FC = () => {
           <div className="flex items-center gap-3 mb-3 md:mb-0">
             <a href="/">
               <img 
-                src={logo} 
+                src="/media/vdyfdo3s/dzesa_logo_home_noback.png" 
                 alt="DSEZA Logo" 
                 className="h-16 w-auto" 
               />
