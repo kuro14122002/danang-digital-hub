@@ -61,7 +61,7 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
     <section className="py-10 bg-light">
       <div className="container-custom">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="card-header">
+          <div className="card-header bg-primary text-white p-4">
             <h2 className="text-xl font-bold">
               {currentLang === "vi" ? "Dành Cho Nhà Đầu Tư" : "For Investors"}
             </h2>
@@ -73,13 +73,13 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
                 <a
                   key={index}
                   href={item.href}
-                  className="flex bg-white border rounded-lg overflow-hidden hover:shadow-md transition-shadow p-4"
+                  className="flex bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 p-4 group"
                 >
-                  <div className="mr-4 text-primary">
-                    <item.icon size={36} />
+                  <div className="mr-4 text-primary group-hover:text-primary-dark transition-colors">
+                    <item.icon size={40} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-800 mb-1">{item.title}</h3>
+                    <h3 className="font-bold text-gray-800 mb-1 group-hover:text-primary transition-colors">{item.title}</h3>
                     <p className="text-gray-600 text-sm">{item.description}</p>
                   </div>
                 </a>
