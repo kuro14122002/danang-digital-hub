@@ -1,5 +1,4 @@
 
-// src/components/Header.tsx
 import { useState, useEffect } from "react";
 import { Search, Globe, User } from "lucide-react";
 import Navigation from "./Navigation";
@@ -24,29 +23,46 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
   }, []);
 
   const formatDate = (date: Date) => {
-    if (currentLang === "vi") {
-      const dayOfWeek = new Intl.DateTimeFormat("vi-VN", { weekday: 'long' }).format(date);
-      const day = new Intl.DateTimeFormat("vi-VN", { day: 'numeric' }).format(date);
-      const month = new Intl.DateTimeFormat("vi-VN", { month: 'numeric' }).format(date);
-      const year = new Intl.DateTimeFormat("vi-VN", { year: 'numeric' }).format(date);
-      const time = new Intl.DateTimeFormat("vi-VN", {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      }).format(date);
-      return `${dayOfWeek}, ngày ${day} tháng ${month} năm ${year}, ${time}`;
+    if (isMobile) {
+      // Simplified date format for mobile (dd/mm/yyyy)
+      if (currentLang === "vi") {
+        const day = new Intl.DateTimeFormat("vi-VN", { day: '2-digit' }).format(date);
+        const month = new Intl.DateTimeFormat("vi-VN", { month: '2-digit' }).format(date);
+        const year = new Intl.DateTimeFormat("vi-VN", { year: 'numeric' }).format(date);
+        return `${day}/${month}/${year}`;
+      } else {
+        return new Intl.DateTimeFormat("en-US", {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }).format(date);
+      }
     } else {
-      return new Intl.DateTimeFormat("en-US", {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      }).format(date);
+      // Full format for desktop
+      if (currentLang === "vi") {
+        const dayOfWeek = new Intl.DateTimeFormat("vi-VN", { weekday: 'long' }).format(date);
+        const day = new Intl.DateTimeFormat("vi-VN", { day: 'numeric' }).format(date);
+        const month = new Intl.DateTimeFormat("vi-VN", { month: 'numeric' }).format(date);
+        const year = new Intl.DateTimeFormat("vi-VN", { year: 'numeric' }).format(date);
+        const time = new Intl.DateTimeFormat("vi-VN", {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).format(date);
+        return `${dayOfWeek}, ngày ${day} tháng ${month} năm ${year}, ${time}`;
+      } else {
+        return new Intl.DateTimeFormat("en-US", {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).format(date);
+      }
     }
   };
 
@@ -78,7 +94,7 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
       <div className="bg-white border-b">
         <div className="container-custom py-3 md:py-4">
           <div className="flex flex-wrap items-center justify-between">
-            {/* Logo - hidden on mobile */}
+            {/* Desktop: Logo + Text */}
             <div className="hidden sm:flex items-center">
               <img
                 src="/media/vdyfdo3s/dzesa_logo_home_noback.png"
@@ -93,6 +109,16 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
                   {currentLang === "vi" ? "DSEZA - Đà Nẵng" : "DSEZA - Da Nang"}
                 </p>
               </div>
+            </div>
+            
+            {/* Mobile: Text Only (No Logo) */}
+            <div className="sm:hidden w-full mb-3">
+              <h1 className="text-primary font-bold text-lg leading-tight">
+                {currentLang === "vi" ? "BAN QUẢN LÝ KHU CÔNG NGHỆ CAO VÀ CÁC KHU CÔNG NGHIỆP ĐÀ NẴNG" : "DA NANG SPECIFIC ECONOMIC ZONES AUTHORITY"}
+              </h1>
+              <p className="text-sm text-gray-600">
+                {currentLang === "vi" ? "DSEZA - Đà Nẵng" : "DSEZA - Da Nang"}
+              </p>
             </div>
 
             {/* Search */}
