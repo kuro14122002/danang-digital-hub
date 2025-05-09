@@ -1,4 +1,4 @@
-
+// src/pages/Index.tsx
 import { useState } from "react";
 import Header from "../components/Header";
 import Banner from "../components/Banner";
@@ -9,25 +9,50 @@ import InvestmentEnv from "../components/InvestmentEnv";
 import Footer from "../components/Footer";
 
 const Index = () => {
-  const [currentLang, setCurrentLang] = useState("vi");
-  
+  const [currentLang, setCurrentLang] = useState("vi"); // Quản lý ngôn ngữ ở đây
+
+  // Hàm này sẽ được truyền xuống Header để cập nhật ngôn ngữ
+  const handleLanguageChange = (lang: string) => {
+    setCurrentLang(lang);
+  };
+
+  // Định nghĩa các Quick Links dựa trên ngôn ngữ hiện tại
+  const quickLinks = [
+    { label: currentLang === "vi" ? "Dịch vụ công trực tuyến" : "Online Public Services", href: "#" },
+    { label: currentLang === "vi" ? "Thủ tục hành chính" : "Administrative Procedures", href: "#" },
+    { label: currentLang === "vi" ? "Công khai kết quả TTHC" : "Procedure Results", href: "#" },
+    { label: currentLang === "vi" ? "Tiếp nhận phản ánh" : "Receive Feedback", href: "#" },
+    { label: currentLang === "vi" ? "Đặt lịch hẹn" : "Appointment Booking", href: "#" },
+  ];
+
+  // Định nghĩa các Utilities Links dựa trên ngôn ngữ hiện tại
+  const utilityLinks = [
+    { label: currentLang === "vi" ? "Lịch công tác" : "Work Schedule", href: "#" },
+    { label: currentLang === "vi" ? "Dịch vụ công" : "Public Services", href: "#" },
+    { label: currentLang === "vi" ? "Tra cứu hồ sơ" : "Document Lookup", href: "#" },
+    { label: currentLang === "vi" ? "Bưu chính công ích" : "Postal Service", href: "#" },
+    { label: currentLang === "vi" ? "Đánh giá chất lượng" : "Quality Assessment", href: "#" },
+    { label: currentLang === "vi" ? "Dự án khuyến khích đầu tư" : "Investment Projects", href: "#" },
+    { label: currentLang === "vi" ? "Báo cáo giám sát" : "Monitoring Reports", href: "#" },
+    { label: currentLang === "vi" ? "Thủ tục môi trường" : "Environmental Procedures", href: "#" },
+    { label: currentLang === "vi" ? "Thông tin báo chí" : "Press Information", href: "#" },
+    { label: currentLang === "vi" ? "Báo cáo thống kê" : "Statistical Reports", href: "#" },
+    { label: currentLang === "vi" ? "Mua sắm công" : "Public Procurement", href: "#" },
+    { label: currentLang === "vi" ? "Góp ý văn bản" : "Document Feedback", href: "#" },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
+      {/* Truyền currentLang và handleLanguageChange xuống Header */}
+      <Header currentLang={currentLang} onLanguageChange={handleLanguageChange} />
       <main>
         <Banner currentLang={currentLang} />
-        
+
         {/* Quick Links */}
         <section className="py-6 border-b">
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {[
-                { label: currentLang === "vi" ? "Dịch vụ công trực tuyến" : "Online Public Services", href: "#" },
-                { label: currentLang === "vi" ? "Thủ tục hành chính" : "Administrative Procedures", href: "#" },
-                { label: currentLang === "vi" ? "Công khai kết quả TTHC" : "Procedure Results", href: "#" },
-                { label: currentLang === "vi" ? "Tiếp nhận phản ánh" : "Receive Feedback", href: "#" },
-                { label: currentLang === "vi" ? "Đặt lịch hẹn" : "Appointment Booking", href: "#" },
-              ].map((link, index) => (
+              {quickLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
@@ -39,19 +64,19 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
+
         <FeaturedNews currentLang={currentLang} />
         <IndustrialZones currentLang={currentLang} />
         <InvestorInfo currentLang={currentLang} />
         <InvestmentEnv currentLang={currentLang} />
-        
+
         {/* VR Tour Banner */}
         <section className="py-10">
           <div className="container-custom">
             <div className="rounded-lg overflow-hidden relative h-48 md:h-64">
-              <img 
-                src="/placeholder.svg" 
-                alt="VR360 Tour" 
+              <img
+                src="/placeholder.svg" // Thay thế bằng ảnh thực tế
+                alt={currentLang === "vi" ? "Tham quan VR360" : "VR360 Tour"}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -60,12 +85,12 @@ const Index = () => {
                     {currentLang === "vi" ? "Khám Phá VR360 Tour" : "Explore VR360 Tour"}
                   </h2>
                   <p className="mb-4">
-                    {currentLang === "vi" 
-                      ? "Tham quan Khu Công nghệ cao Đà Nẵng theo góc nhìn 360°" 
+                    {currentLang === "vi"
+                      ? "Tham quan Khu Công nghệ cao Đà Nẵng theo góc nhìn 360°"
                       : "Take a 360° virtual tour of Da Nang Hi-Tech Park"}
                   </p>
-                  <a 
-                    href="#" 
+                  <a
+                    href="#" // Thay thế bằng link thực tế
                     className="bg-white text-primary px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors"
                   >
                     {currentLang === "vi" ? "Trải Nghiệm Ngay" : "Experience Now"}
@@ -75,28 +100,15 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
-        {/* Quick Links Grid */}
+
+        {/* Utilities Grid */}
         <section className="py-10 bg-light">
           <div className="container-custom">
             <h2 className="text-2xl font-bold text-center mb-8">
               {currentLang === "vi" ? "Tiện Ích" : "Utilities"}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { label: currentLang === "vi" ? "Lịch công tác" : "Work Schedule", href: "#" },
-                { label: currentLang === "vi" ? "Dịch vụ công" : "Public Services", href: "#" },
-                { label: currentLang === "vi" ? "Tra cứu hồ sơ" : "Document Lookup", href: "#" },
-                { label: currentLang === "vi" ? "Bưu chính công ích" : "Postal Service", href: "#" },
-                { label: currentLang === "vi" ? "Đánh giá chất lượng" : "Quality Assessment", href: "#" },
-                { label: currentLang === "vi" ? "Dự án khuyến khích đầu tư" : "Investment Projects", href: "#" },
-                { label: currentLang === "vi" ? "Báo cáo giám sát" : "Monitoring Reports", href: "#" },
-                { label: currentLang === "vi" ? "Thủ tục môi trường" : "Environmental Procedures", href: "#" },
-                { label: currentLang === "vi" ? "Thông tin báo chí" : "Press Information", href: "#" },
-                { label: currentLang === "vi" ? "Báo cáo thống kê" : "Statistical Reports", href: "#" },
-                { label: currentLang === "vi" ? "Mua sắm công" : "Public Procurement", href: "#" },
-                { label: currentLang === "vi" ? "Góp ý văn bản" : "Document Feedback", href: "#" },
-              ].map((link, index) => (
+              {utilityLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
@@ -108,7 +120,7 @@ const Index = () => {
             </div>
           </div>
         </section>
-        
+
         {/* Investment Statistics */}
         <section className="py-10">
           <div className="container-custom">
@@ -118,7 +130,7 @@ const Index = () => {
                   {currentLang === "vi" ? "Kết Quả Thu Hút Đầu Tư" : "Investment Results"}
                 </h2>
               </div>
-              
+
               <div className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {/* FDI */}
@@ -153,7 +165,7 @@ const Index = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* DDI */}
                   <div className="border rounded-lg p-4">
                     <h3 className="font-bold text-xl mb-2 text-primary">
@@ -186,13 +198,14 @@ const Index = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Chart */}
                   <div className="border rounded-lg p-4">
                     <h3 className="font-bold text-xl mb-2 text-primary">
                       {currentLang === "vi" ? "Phân bổ đầu tư" : "Investment Distribution"}
                     </h3>
                     <div className="h-48 flex items-center justify-center">
+                      {/* Bạn có thể thêm biểu đồ thực tế ở đây */}
                       <span className="text-gray-500">
                         {currentLang === "vi" ? "Biểu đồ thống kê đầu tư" : "Investment statistics chart"}
                       </span>
