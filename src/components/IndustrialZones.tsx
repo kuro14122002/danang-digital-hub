@@ -1,108 +1,147 @@
 
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { FileBarChart, Building2, Warehouse, MapPin } from "lucide-react";
 
-const IndustrialZones: React.FC = () => {
+interface IndustrialZonesProps {
+  currentLang: string;
+}
+
+const IndustrialZones = ({ currentLang }: IndustrialZonesProps) => {
   const zones = [
     {
-      id: 1,
-      name: "Khu Công Nghệ Cao Đà Nẵng",
-      nameEn: "Da Nang Hi-Tech Park",
-      area: "1,128.4 ha",
-      image: "/media/tcwbbl0d/khu-cnc.jpeg",
-      description: "Khu Công nghệ cao Đà Nẵng được Thủ tướng Chính phủ quyết định thành lập năm 2010, là một khu công nghệ cao đa chức năng...",
-      link: "/kcnc-da-nang"
+      id: "dnhtp",
+      name: currentLang === "vi" ? "Khu Công Nghệ Cao Đà Nẵng" : "Da Nang Hi-Tech Park",
+      image: "/placeholder.svg",
+      area: "1,128.4",
+      companies: 24,
+      occupancy: 65,
+      href: "#"
     },
     {
-      id: 2,
-      name: "Khu Công Nghiệp Hòa Khánh",
-      nameEn: "Hoa Khanh Industrial Zone",
-      area: "196 ha",
-      image: "/media/pnjblcbf/h1.jpg",
-      description: "Khu công nghiệp Hòa Khánh là khu công nghiệp đầu tiên của Đà Nẵng được thành lập năm 1996...",
-      link: "/kcn-hoa-khanh"
+      id: "hoakhanh",
+      name: currentLang === "vi" ? "KCN Hòa Khánh" : "Hoa Khanh Industrial Zone",
+      image: "/placeholder.svg",
+      area: "396.3",
+      companies: 72,
+      occupancy: 95,
+      href: "#"
     },
     {
-      id: 3,
-      name: "Khu Công Nghiệp Liên Chiểu",
-      nameEn: "Lien Chieu Industrial Zone",
-      area: "300 ha",
-      image: "/media/bnsp35dc/iconmtdt5.png",
-      description: "Khu công nghiệp Liên Chiểu được thành lập năm 2003, chuyên về sản xuất công nghiệp nặng...",
-      link: "/kcn-lien-chieu"
+      id: "danang",
+      name: currentLang === "vi" ? "KCN Đà Nẵng" : "Da Nang Industrial Zone",
+      image: "/placeholder.svg",
+      area: "73.5",
+      companies: 25,
+      occupancy: 98,
+      href: "#"
     },
     {
-      id: 4,
-      name: "Khu CNTT Tập Trung",
-      nameEn: "Concentrated IT Park",
-      area: "341 ha",
-      image: "/media/o3jnwlci/khu-công-nghe-thong-tin-tap-trung.png",
-      description: "Khu CNTT tập trung Đà Nẵng là trung tâm công nghệ thông tin lớn của miền Trung...",
-      link: "/kcntt-da-nang"
+      id: "hoacam",
+      name: currentLang === "vi" ? "KCN Hòa Cầm" : "Hoa Cam Industrial Zone",
+      image: "/placeholder.svg",
+      area: "142.8",
+      companies: 38,
+      occupancy: 87,
+      href: "#"
     },
     {
-      id: 5,
-      name: "Khu Công Nghiệp Hòa Cầm",
-      nameEn: "Hoa Cam Industrial Zone",
-      area: "142.8 ha",
-      image: "/media/rmxb45pf/iconmtdt2.png",
-      description: "Khu công nghiệp Hòa Cầm được thành lập năm 2003, tập trung vào các doanh nghiệp vừa và nhỏ...",
-      link: "/kcn-hoa-cam"
+      id: "lienchieu",
+      name: currentLang === "vi" ? "KCN Liên Chiểu" : "Lien Chieu Industrial Zone",
+      image: "/placeholder.svg",
+      area: "320.5",
+      companies: 60,
+      occupancy: 82,
+      href: "#"
+    },
+    {
+      id: "thuysandn",
+      name: currentLang === "vi" ? "KCN Dịch vụ Thủy sản" : "Fishery Services Industrial Zone",
+      image: "/placeholder.svg",
+      area: "22.1",
+      companies: 8,
+      occupancy: 75,
+      href: "#"
     }
   ];
 
   return (
-    <div className="relative py-4">
-      <Swiper
-        modules={[Navigation, Pagination]}
-        spaceBetween={20}
-        slidesPerView={1}
-        breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 }
-        }}
-        pagination={{ clickable: true }}
-        navigation
-      >
-        {zones.map(zone => (
-          <SwiperSlide key={zone.id}>
-            <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col">
+    <section className="py-10 bg-primary text-white">
+      <div className="container-custom">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">
+            {currentLang === "vi" ? "Khu Công Nghệ Cao & Các Khu Công Nghiệp" : "Hi-Tech Park & Industrial Zones"}
+          </h2>
+          <a 
+            href="/zones" 
+            className="bg-white text-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors"
+          >
+            {currentLang === "vi" ? "Xem tất cả" : "View all"}
+          </a>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {zones.map((zone) => (
+            <div key={zone.id} className="bg-white rounded-lg overflow-hidden shadow-lg text-gray-800">
               <div className="relative h-40">
                 <img 
                   src={zone.image} 
                   alt={zone.name} 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent py-2 px-4">
-                  <h3 className="text-white font-semibold text-lg">{zone.name}</h3>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                  <h3 className="text-white font-bold p-4 text-lg">{zone.name}</h3>
                 </div>
               </div>
-              <div className="p-4 flex-grow flex flex-col">
-                <div className="mb-2 flex items-center">
-                  <span className="text-xs font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                    {zone.area}
-                  </span>
+              
+              <div className="p-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center space-x-2">
+                    <MapPin size={18} className="text-primary" />
+                    <div>
+                      <p className="text-xs text-gray-500">
+                        {currentLang === "vi" ? "Diện tích (ha)" : "Area (ha)"}
+                      </p>
+                      <p className="font-semibold">{zone.area}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2">
+                    <Building2 size={18} className="text-primary" />
+                    <div>
+                      <p className="text-xs text-gray-500">
+                        {currentLang === "vi" ? "Doanh nghiệp" : "Companies"}
+                      </p>
+                      <p className="font-semibold">{zone.companies}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="col-span-2">
+                    <p className="text-xs text-gray-500 mb-1">
+                      {currentLang === "vi" ? "Tỷ lệ lấp đầy" : "Occupancy rate"}
+                    </p>
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div
+                        className="bg-primary h-2.5 rounded-full"
+                        style={{ width: `${zone.occupancy}%` }}
+                      ></div>
+                    </div>
+                    <p className="text-right text-xs mt-1">{zone.occupancy}%</p>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4 line-clamp-3 flex-grow">
-                  {zone.description}
-                </p>
-                <a 
-                  href={zone.link}
-                  className="self-start text-sm bg-[#024b96] text-white px-3 py-1.5 rounded hover:bg-blue-700 transition mt-auto inline-flex items-center"
-                >
-                  Chi tiết
-                </a>
+                
+                <div className="mt-4">
+                  <a
+                    href={zone.href}
+                    className="block text-center bg-primary text-white py-2 rounded-md hover:bg-primary/90 transition-colors"
+                  >
+                    {currentLang === "vi" ? "Xem chi tiết" : "View details"}
+                  </a>
+                </div>
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

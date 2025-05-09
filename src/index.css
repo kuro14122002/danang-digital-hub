@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,34 +8,34 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 215 25% 27%;
+    --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card-foreground: 222.2 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 211 97% 30%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 212 100% 31%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 9% 31%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 198 93% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 215 25% 27%;
+    --ring: 222.2 84% 4.9%;
 
-    --radius: 0.25rem;
+    --radius: 0.5rem;
   }
 
   * {
@@ -43,15 +44,10 @@
   
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: 'Roboto', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold text-[#024b96];
-  }
-
-  a {
-    @apply transition duration-200;
+    @apply font-sans font-bold;
   }
 }
 
@@ -61,85 +57,18 @@
   }
   
   .card-header {
-    @apply bg-[#024b96] text-white font-bold p-3 rounded-t;
+    @apply bg-primary text-white font-bold p-3 rounded-t;
   }
   
   .btn-primary {
-    @apply bg-[#024b96] text-white py-2 px-4 rounded hover:brightness-110 transition-all;
+    @apply bg-primary text-white py-2 px-4 rounded hover:bg-primary/90 transition-colors;
   }
   
   .btn-secondary {
-    @apply bg-gray-700 text-white py-2 px-4 rounded hover:brightness-110 transition-all;
+    @apply bg-secondary text-white py-2 px-4 rounded hover:bg-secondary/90 transition-colors;
   }
   
   .btn-accent {
-    @apply bg-[#1eafed] text-white py-2 px-4 rounded hover:brightness-110 transition-all;
-  }
-
-  .page-section {
-    @apply py-8;
-  }
-
-  .section-title {
-    @apply text-xl font-bold mb-6 uppercase text-center text-[#024b96];
-  }
-
-  .bordered-box {
-    @apply border rounded-lg p-4 bg-white shadow-sm;
-  }
-
-  .icon-bullet {
-    @apply w-2 h-2 bg-blue-600 rounded-full mt-1.5 mr-2 flex-shrink-0;
+    @apply bg-accent text-white py-2 px-4 rounded hover:bg-accent/90 transition-colors;
   }
 }
-
-/* Override for specific styles matching dseza.danang.gov.vn */
-.main-nav {
-  @apply bg-[#024b96];
-}
-
-.footer-bg {
-  @apply bg-[#024b96];
-}
-
-.footer-bottom {
-  @apply bg-gray-800;
-}
-
-.news-item:hover .news-item-title {
-  @apply text-[#1eafed];
-}
-
-.quick-link:hover {
-  @apply bg-blue-50 border-[#024b96];
-}
-
-.search-input {
-  @apply border border-gray-300 rounded-full px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-[#024b96] focus:border-[#024b96];
-}
-
-.language-switch {
-  @apply text-white hover:text-blue-300;
-}
-
-/* Mobile menu styles */
-.mobile-menu {
-  @apply bg-[#043b76];
-}
-
-.mobile-menu-item {
-  @apply text-white border-b border-blue-800/50 py-3 px-4 hover:bg-[#024b96]/80;
-}
-
-.mobile-submenu {
-  @apply bg-[#043b76]/90;
-}
-
-.mobile-submenu-item {
-  @apply text-white border-t border-blue-700/30 py-2 px-6 hover:bg-[#024b96]/80;
-}
-
-/* Import custom styles for DZESA site */
-@import './scss/_site-custom.scss';
-
-/* Additional styles can be added here as needed */

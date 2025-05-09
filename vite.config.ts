@@ -20,5 +20,3 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-
-// Note: For image optimization, consider adding a plugin like 'vite-plugin-image-optimizer' or using a tool to compress images in 'public/media' directory.

@@ -1,118 +1,90 @@
 
-import React from 'react';
-import '/public/css/sites/styles.css';
+import { Phone, Mail, MapPin, Facebook, Globe } from "lucide-react";
 
 interface FooterProps {
-  currentLang?: string;
+  currentLang: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ currentLang = "vi" }) => {
+const Footer = ({ currentLang }: FooterProps) => {
+  const visitCount = Math.floor(Math.random() * 100000) + 50000;
+  
   return (
-    <>
-      <div className="container-fluid footer-container mt-3">
-        <div className="row h-100 custom-mt-footer-mobile">
-          <div className="col-md-8 mt-2">
-            <p className="custom-font lien-he-title mb-2">
-              {currentLang === "vi" ? "LIÊN HỆ" : "CONTACT"}
-            </p>
-            <div className="row">
-              <div className="col-1 col-md-auto">
-                <img src="/media/tcap1ce2/address.svg" alt="diaChiIcon" className="lien-he-icon" />
-              </div>
-              <div className="col-11 col-md-11">
-                <p className="custom-font lien-he-label">
-                  {currentLang === "vi" 
-                    ? "Lô A17, đường Trung tâm, Khu công nghệ cao, xã Hòa Liên, huyện Hòa Vang, Đà Nẵng" 
-                    : "Lot A17, Central Road, Hi-Tech Park, Hoa Lien Commune, Hoa Vang District, Da Nang"}
-                </p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-1 col-md-auto">
-                <img src="/media/0ibbsoss/phone.svg" alt="dienThoaiIcon" className="lien-he-icon" />
-              </div>
-              <div className="col-11 col-md-11">
-                <p className="custom-font lien-he-label">0236 3666117</p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-1 col-md-auto">
-                <img src="/media/0ibbsoss/phone.svg" alt="dienThoaiIcon" className="lien-he-icon" />
-              </div>
-              <div className="col-11 col-md-11">
-                <p className="custom-font lien-he-label">
-                  {currentLang === "vi"
-                    ? "Điện thoại bộ phận Tiếp nhận hồ sơ và Trả kết quả cho công dân, tổ chức: 0236.3666100"
-                    : "Phone number for Documentation Reception and Result Delivery for citizens and organizations: 0236.3666100"}
-                </p>
+    <footer>
+      <div className="bg-primary text-white py-10">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Contact Info */}
+            <div>
+              <h3 className="text-xl font-bold mb-4">
+                {currentLang === "vi" ? "Thông Tin Liên Hệ" : "Contact Information"}
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-start">
+                  <MapPin size={20} className="mr-3 mt-1 flex-shrink-0" />
+                  <p>
+                    {currentLang === "vi" 
+                      ? "Số 15 Đường Nguyễn Hữu Thọ, Phường Hòa Thuận Tây, Quận Hải Châu, TP. Đà Nẵng" 
+                      : "15 Nguyen Huu Tho Street, Hoa Thuan Tay Ward, Hai Chau District, Da Nang City"}
+                  </p>
+                </div>
+                <div className="flex items-center">
+                  <Phone size={20} className="mr-3 flex-shrink-0" />
+                  <p>(0236) 3 612 287 - 3 822 892</p>
+                </div>
+                <div className="flex items-center">
+                  <Mail size={20} className="mr-3 flex-shrink-0" />
+                  <p>banquanly@dhpiza.danang.gov.vn</p>
+                </div>
+                <div className="flex items-center">
+                  <Globe size={20} className="mr-3 flex-shrink-0" />
+                  <p>www.dhpiza.danang.gov.vn</p>
+                </div>
+                <div className="flex items-center">
+                  <Facebook size={20} className="mr-3 flex-shrink-0" />
+                  <a href="#" className="hover:underline">Facebook DSEZA</a>
+                </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-1 col-md-auto">
-                <img src="/media/e3igajfb/mail.svg" alt="emailIcon" className="lien-he-icon" />
-              </div>
-              <div className="col-11 col-md-11">
-                <p className="custom-font lien-he-label">dseza@danang.gov.vn</p>
+            
+            {/* Map */}
+            <div className="md:col-span-2">
+              <h3 className="text-xl font-bold mb-4">{currentLang === "vi" ? "Bản Đồ" : "Map"}</h3>
+              <div className="h-64 bg-gray-200 rounded-lg">
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-gray-500">
+                    {currentLang === "vi" ? "Bản đồ vị trí" : "Location Map"}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-4 d-flex justify-content-md-end justify-content-center mt-2">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3833.4418592568395!2d108.0822033!3d16.0944277!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421f89a43bfb03%3A0x40f66e6ba7346b99!2zQmFuIHF14bqjbiBsw70gS2h1IGPDtG5nIG5naOG7hyBjYW8gdsOgIGPDoWMgS2h1IGPDtG5nIG5naGnhu4dwIMSQw6AgTuG6tW5n!5e0!3m2!1svi!2s!4v1736085791335!5m2!1svi!2s"
-              className="ban-do-footer"
-              style={{ height: "200px", width: "100%", border: 0, borderRadius: "4px" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Google Map"
-            ></iframe>
           </div>
         </div>
-        <div className="hr-footer"></div>
-        <div className="row align-items-center">
-          <div className="col-12 col-md-2 d-flex align-items-center justify-content-md-start justify-content-center">
-            <img src="/media/3vknguhu/tinnhiemmang.png" alt="giayPhep" className="img-giayphep" style={{ maxWidth: "150px" }} />
-          </div>
-          <div className="col-12 col-md-10 d-flex align-items-center justify-content-md-start justify-content-center">
-            <span className="custom-font-giayPhepText mb-2">
+      </div>
+      
+      {/* Footer Bottom */}
+      <div className="bg-primary-dark text-white py-4">
+        <div className="container-custom">
+          <div className="flex flex-wrap justify-between items-center">
+            <div className="text-sm">
               <p>
-                <strong>{currentLang === "vi" ? "Giấy phép:" : "License:"}</strong> 
                 {currentLang === "vi" 
-                  ? " Số 05/GP-STTTT do Sở Thông tin và Truyền thông Đà Nẵng cấp ngày 02/01/2020" 
-                  : " No. 05/GP-STTTT issued by Department of Information and Communications of Da Nang on January 2, 2020"}
-                <br />
-                <strong>{currentLang === "vi" ? "Trưởng Ban biên tập:" : "Editor-in-Chief:"}</strong> 
-                {currentLang === "vi"
-                  ? " Trần Văn Tỵ, Phó Trưởng ban Ban Quản lý Khu công nghệ cao và các khu công nghiệp Đà Nẵng"
-                  : " Tran Van Ty, Deputy Director of Da Nang Hi-Tech Park and Industrial Zones Authority"}
-                <br />
-                {currentLang === "vi"
-                  ? "Ghi rõ nguồn \"Trang thông tin điện tử Khu công nghệ cao và các khu công nghiệp Đà Nẵng\" hoặc \"www.dseza.danang.gov.vn\" khi trích dẫn lại thông tin từ Website này."
-                  : "Please cite source as \"Da Nang Hi-Tech Park and Industrial Zones Authority Website\" or \"www.dseza.danang.gov.vn\" when quoting information from this website."}
+                  ? "Cơ quan chủ quản: Ban Quản lý Khu Công nghệ cao và các Khu Công nghiệp Đà Nẵng" 
+                  : "Authority: Da Nang Hi-Tech Park and Industrial Zones Authority"}
               </p>
-            </span>
+              <p>
+                {currentLang === "vi" 
+                  ? "Giấy phép thiết lập trang tin điện tử số 12/GP-TTĐT cấp ngày 20/05/2023" 
+                  : "Electronic information page license No. 12/GP-TTĐT issued on May 20, 2023"}
+              </p>
+            </div>
+            <div className="text-sm mt-2 md:mt-0">
+              <p>© 2023 DSEZA. {currentLang === "vi" ? "Bản quyền." : "All rights reserved."}</p>
+              <p>{currentLang === "vi" ? "Lượt truy cập" : "Visitors"}: {visitCount.toLocaleString()}</p>
+            </div>
           </div>
         </div>
       </div>
-      <div className="hr2-footer"></div>
-      <div className="container-fluid footer-container">
-        <div className="row align-items-center pt-1">
-          <div className="col-md-8">
-            <span className="custom-font lien-he-label">
-              {currentLang === "vi"
-                ? "© Bản quyền của Ban Quản lý Khu công nghệ cao và các Khu công nghiệp Đà Nẵng"
-                : "© Copyright of Da Nang Hi-Tech Park and Industrial Zones Authority"}
-            </span>
-          </div>
-          <div className="col-md-4 d-flex align-items-center justify-content-md-end justify-content-start mb-2">
-            <img src="/media/vqxfntwc/chart.svg" alt="colChartIcon" className="col-chart-icon" style={{ width: "20px", marginRight: "8px" }} />
-            <span className="custom-font lien-he-label">
-              {currentLang === "vi" ? "Số lượt truy cập: 13608" : "Visits: 13608"}
-            </span>
-          </div>
-        </div>
-      </div>
-    </>
+    </footer>
   );
 };
 

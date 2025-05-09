@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -12,12 +13,8 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '1rem',
+			padding: '2rem',
 			screens: {
-				sm: '640px',
-				md: '768px',
-				lg: '1024px',
-				xl: '1280px',
 				'2xl': '1400px'
 			}
 		},
@@ -29,17 +26,16 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#024b96',
-					dark: '#043b76',
-					light: '#1264bb',
+					DEFAULT: '#004FA0',
+					dark: '#1C2C52',
 					foreground: '#FFFFFF'
 				},
 				secondary: {
-					DEFAULT: '#4a5568',
+					DEFAULT: '#2c3e50',
 					foreground: '#FFFFFF'
 				},
 				accent: {
-					DEFAULT: '#1eafed',
+					DEFAULT: '#1abc9c',
 					foreground: '#FFFFFF'
 				},
 				destructive: {
@@ -50,6 +46,10 @@ export default {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
 				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
+				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
@@ -59,8 +59,8 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				light: {
-					DEFAULT: '#f8fafc',
-					foreground: '#475569'
+					DEFAULT: '#EBF6FF',
+					foreground: '#212529'
 				}
 			},
 			borderRadius: {
@@ -91,13 +91,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			fontFamily: {
-				sans: ['Roboto', 'sans-serif'],
-			},
-			boxShadow: {
-				'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-				DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-				'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-				'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+				sans: ['Roboto', 'Open Sans', 'sans-serif'],
 			}
 		}
 	},
