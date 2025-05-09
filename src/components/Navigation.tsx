@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface NavigationProps {
   currentLang: string;
@@ -9,6 +11,7 @@ interface NavigationProps {
 
 const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: NavigationProps) => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const toggleDropdown = (key: string) => {
     setActiveDropdown(activeDropdown === key ? null : key);
@@ -76,16 +79,16 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
 
   return (
     <nav className="bg-primary text-white sticky top-0 z-50">
-    {/* THAY ĐỔI KẾT THÚC TẠI ĐÂY */}
       <div className="container-custom relative">
-        {/* Mobile menu button */}
+        {/* Mobile menu button - improved touch target */}
         <div className="flex items-center justify-between py-3 lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-white focus:outline-none"
+            className="text-white focus:outline-none flex items-center py-2 px-3 rounded-md"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            <span className="ml-2">{currentLang === "vi" ? "Menu" : "Menu"}</span>
+            <span className="ml-2 text-base">{currentLang === "vi" ? "Menu" : "Menu"}</span>
           </button>
         </div>
 
@@ -132,24 +135,24 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
           </ul>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - improved */}
         {mobileMenuOpen && (
-          <div className="lg:hidden absolute left-0 right-0 bg-primary-dark z-40"> {/* Giảm z-index nếu nó nằm dưới nav chính */}
+          <div className="lg:hidden absolute left-0 right-0 bg-primary-dark z-40 shadow-lg max-h-[80vh] overflow-y-auto">
             <ul className="py-2">
               {menuItems.map((item) => (
                 <li key={item.key} className="relative">
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="block px-4 py-3 hover:bg-primary/90 transition-colors"
-                      onClick={() => setMobileMenuOpen(false)} // Đóng menu khi nhấp vào link
+                      className="block px-4 py-4 hover:bg-primary/90 transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.label}
                     </a>
                   ) : (
                     <>
                       <button
-                        className="flex items-center justify-between w-full px-4 py-3 hover:bg-primary/90 transition-colors"
+                        className="flex items-center justify-between w-full px-4 py-4 hover:bg-primary/90 transition-colors"
                         onClick={() => toggleDropdown(item.key)}
                       >
                         {item.label}
@@ -163,8 +166,8 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
                               <li key={index}>
                                 <a
                                   href={subitem.href}
-                                  className="block px-8 py-2 hover:bg-primary/90 border-t border-white/10"
-                                  onClick={() => setMobileMenuOpen(false)} // Đóng menu khi nhấp vào link
+                                  className="block px-8 py-3 hover:bg-primary/90 border-t border-white/10"
+                                  onClick={() => setMobileMenuOpen(false)}
                                 >
                                   {subitem.label}
                                 </a>

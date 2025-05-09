@@ -1,11 +1,14 @@
 
 import { Network, Factory, Map, Leaf, Building, Users, Award, Laptop } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface InvestmentEnvProps {
   currentLang: string;
 }
 
 const InvestmentEnv = ({ currentLang }: InvestmentEnvProps) => {
+  const isMobile = useIsMobile();
+  
   const envItems = [
     {
       icon: Factory,
@@ -74,28 +77,28 @@ const InvestmentEnv = ({ currentLang }: InvestmentEnvProps) => {
   ];
 
   return (
-    <section className="py-10">
+    <section className="py-6 md:py-10">
       <div className="container-custom">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="card-header">
-            <h2 className="text-xl font-bold">
+            <h2 className="text-lg md:text-xl font-bold">
               {currentLang === "vi" ? "Môi Trường Đầu Tư" : "Investment Environment"}
             </h2>
           </div>
           
-          <div className="p-6">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div className="p-3 md:p-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
               {envItems.map((item, index) => (
                 <a
                   key={index}
                   href={item.href}
-                  className="flex flex-col items-center text-center p-4 border rounded-lg hover:shadow-md transition-shadow"
+                  className="flex flex-col items-center text-center p-3 md:p-4 border rounded-lg hover:shadow-md transition-shadow"
                 >
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-                    <item.icon size={24} className="text-primary" />
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2 md:mb-3">
+                    <item.icon size={isMobile ? 18 : 24} className="text-primary" />
                   </div>
-                  <h3 className="font-bold text-gray-800 mb-1">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
+                  <h3 className="font-bold text-gray-800 mb-1 text-sm md:text-base">{item.title}</h3>
+                  <p className="text-gray-600 text-xs md:text-sm">{item.description}</p>
                 </a>
               ))}
             </div>

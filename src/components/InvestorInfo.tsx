@@ -1,11 +1,14 @@
 
 import { FileText, FileCheck, Map, Search, Globe, SendHorizontal } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface InvestorInfoProps {
   currentLang: string;
 }
 
 const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
+  const isMobile = useIsMobile();
+  
   const investorItems = [
     {
       icon: FileText,
@@ -58,29 +61,29 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
   ];
 
   return (
-    <section className="py-10 bg-light">
+    <section className="py-6 md:py-10 bg-light">
       <div className="container-custom">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="card-header bg-primary text-white p-4">
-            <h2 className="text-xl font-bold">
+          <div className="card-header bg-primary text-white p-3 md:p-4">
+            <h2 className="text-lg md:text-xl font-bold">
               {currentLang === "vi" ? "Dành Cho Nhà Đầu Tư" : "For Investors"}
             </h2>
           </div>
           
-          <div className="p-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-3 md:p-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
               {investorItems.map((item, index) => (
                 <a
                   key={index}
                   href={item.href}
-                  className="flex bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 p-4 group"
+                  className="flex bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 p-3 md:p-4 group"
                 >
-                  <div className="mr-4 text-primary group-hover:text-primary-dark transition-colors">
-                    <item.icon size={40} strokeWidth={1.5} />
+                  <div className="mr-3 md:mr-4 text-primary group-hover:text-primary-dark transition-colors">
+                    <item.icon size={isMobile ? 30 : 40} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-800 mb-1 group-hover:text-primary transition-colors">{item.title}</h3>
-                    <p className="text-gray-600 text-sm">{item.description}</p>
+                    <h3 className="font-bold text-gray-800 mb-1 group-hover:text-primary transition-colors text-sm md:text-base">{item.title}</h3>
+                    <p className="text-gray-600 text-xs md:text-sm">{item.description}</p>
                   </div>
                 </a>
               ))}

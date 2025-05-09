@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface BannerProps {
   currentLang: string;
@@ -8,6 +9,7 @@ interface BannerProps {
 
 const Banner = ({ currentLang }: BannerProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const isMobile = useIsMobile();
 
   const banners = [
     {
@@ -59,7 +61,7 @@ const Banner = ({ currentLang }: BannerProps) => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden h-[400px] md:h-[500px]">
+    <div className="relative overflow-hidden h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px]">
       {banners.map((banner, index) => (
         <div
           key={banner.id}
@@ -76,12 +78,12 @@ const Banner = ({ currentLang }: BannerProps) => {
           </div>
           
           <div className="container-custom relative h-full flex flex-col justify-center">
-            <div className="max-w-lg text-white">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{banner.title}</h2>
-              <p className="text-lg md:text-xl mb-6">{banner.description}</p>
+            <div className="max-w-lg text-white p-3 md:p-0">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">{banner.title}</h2>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 md:mb-6">{banner.description}</p>
               <a 
                 href={banner.btnLink} 
-                className="inline-block bg-white text-primary px-6 py-2.5 rounded-full font-medium hover:bg-gray-100 transition-colors"
+                className="inline-block bg-white text-primary px-4 py-2 md:px-6 md:py-2.5 rounded-full font-medium hover:bg-gray-100 transition-colors text-sm md:text-base"
               >
                 {banner.btnText}
               </a>
@@ -90,27 +92,27 @@ const Banner = ({ currentLang }: BannerProps) => {
         </div>
       ))}
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - hide on small screens */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 text-white p-2 rounded-full hover:bg-white/40 transition-colors"
+        className="hidden sm:block absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 text-white p-2 rounded-full hover:bg-white/40 transition-colors"
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={isMobile ? 20 : 24} />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 text-white p-2 rounded-full hover:bg-white/40 transition-colors"
+        className="hidden sm:block absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 text-white p-2 rounded-full hover:bg-white/40 transition-colors"
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={isMobile ? 20 : 24} />
       </button>
 
-      {/* Dots */}
-      <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2">
+      {/* Dots - made larger for mobile */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-3">
         {banners.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
               index === currentSlide ? "bg-white" : "bg-white/40"
             }`}
           />
