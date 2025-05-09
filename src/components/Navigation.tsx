@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 
@@ -10,11 +9,11 @@ interface NavigationProps {
 
 const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: NavigationProps) => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  
+
   const toggleDropdown = (key: string) => {
     setActiveDropdown(activeDropdown === key ? null : key);
   };
-  
+
   const menuItems = [
     {
       key: "introduction",
@@ -76,11 +75,12 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
   ];
 
   return (
-    <nav className="bg-primary text-white">
+    <nav className="bg-primary text-white sticky top-0 z-50">
+    {/* THAY ĐỔI KẾT THÚC TẠI ĐÂY */}
       <div className="container-custom relative">
         {/* Mobile menu button */}
         <div className="flex items-center justify-between py-3 lg:hidden">
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-white focus:outline-none"
           >
@@ -95,14 +95,14 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
             {menuItems.map((item) => (
               <li key={item.key} className="relative group">
                 {item.href ? (
-                  <a 
+                  <a
                     href={item.href}
                     className="block px-4 py-3 hover:bg-primary-dark transition-colors"
                   >
                     {item.label}
                   </a>
                 ) : (
-                  <button 
+                  <button
                     className="flex items-center px-4 py-3 hover:bg-primary-dark transition-colors"
                     onClick={() => toggleDropdown(item.key)}
                   >
@@ -110,14 +110,14 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
                     <ChevronDown size={16} className="ml-1" />
                   </button>
                 )}
-                
+
                 {item.submenu && (
-                  <div className="absolute left-0 hidden group-hover:block bg-white text-gray-800 shadow-lg min-w-[220px] z-50">
+                  <div className="absolute left-0 hidden group-hover:block bg-white text-gray-800 shadow-lg min-w-[220px] z-50"> {/* Đảm bảo z-index ở đây cũng đủ cao nếu cần */}
                     <ul>
                       {item.submenu.map((subitem, index) => (
                         <li key={index}>
-                          <a 
-                            href={subitem.href} 
+                          <a
+                            href={subitem.href}
                             className="block px-4 py-2 hover:bg-gray-100 border-b last:border-0"
                           >
                             {subitem.label}
@@ -134,35 +134,37 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden absolute left-0 right-0 bg-primary-dark z-50">
+          <div className="lg:hidden absolute left-0 right-0 bg-primary-dark z-40"> {/* Giảm z-index nếu nó nằm dưới nav chính */}
             <ul className="py-2">
               {menuItems.map((item) => (
                 <li key={item.key} className="relative">
                   {item.href ? (
-                    <a 
+                    <a
                       href={item.href}
                       className="block px-4 py-3 hover:bg-primary/90 transition-colors"
+                      onClick={() => setMobileMenuOpen(false)} // Đóng menu khi nhấp vào link
                     >
                       {item.label}
                     </a>
                   ) : (
                     <>
-                      <button 
+                      <button
                         className="flex items-center justify-between w-full px-4 py-3 hover:bg-primary/90 transition-colors"
                         onClick={() => toggleDropdown(item.key)}
                       >
                         {item.label}
                         <ChevronDown size={16} className={`transition-transform ${activeDropdown === item.key ? 'rotate-180' : ''}`} />
                       </button>
-                      
+
                       {item.submenu && activeDropdown === item.key && (
                         <div className="bg-primary/80">
                           <ul>
                             {item.submenu.map((subitem, index) => (
                               <li key={index}>
-                                <a 
-                                  href={subitem.href} 
+                                <a
+                                  href={subitem.href}
                                   className="block px-8 py-2 hover:bg-primary/90 border-t border-white/10"
+                                  onClick={() => setMobileMenuOpen(false)} // Đóng menu khi nhấp vào link
                                 >
                                   {subitem.label}
                                 </a>

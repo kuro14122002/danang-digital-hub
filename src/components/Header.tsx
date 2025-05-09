@@ -1,4 +1,3 @@
-
 // src/components/Header.tsx
 import { useState, useEffect } from "react";
 import { Search, Globe, User } from "lucide-react";
@@ -6,7 +5,7 @@ import Navigation from "./Navigation";
 
 interface HeaderProps {
   currentLang: string;
-  onLanguageChange: (lang: string) => void; // Hàm để thay đổi ngôn ngữ ở component cha
+  onLanguageChange: (lang: string) => void;
 }
 
 const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
@@ -22,6 +21,7 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
   }, []);
 
   const formatDate = (date: Date) => {
+    // ... (code định dạng ngày tháng của bạn)
     if (currentLang === "vi") {
       const dayOfWeek = new Intl.DateTimeFormat("vi-VN", { weekday: 'long' }).format(date);
       const day = new Intl.DateTimeFormat("vi-VN", { day: 'numeric' }).format(date);
@@ -50,11 +50,12 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
 
   const toggleLanguage = () => {
     const newLang = currentLang === "vi" ? "en" : "vi";
-    onLanguageChange(newLang); // Gọi hàm từ props
+    onLanguageChange(newLang);
   };
 
   return (
-    <header className="w-full">
+    // ÁP DỤNG THAY ĐỔI Ở ĐÂY: làm cho toàn bộ header dính
+    <header className="w-full sticky top-0 z-50 shadow-md"> {/* Thêm shadow-md để dễ thấy hơn */}
       {/* Top Bar */}
       <div className="bg-primary-dark text-white">
         <div className="container-custom flex flex-wrap justify-between items-center py-2 text-sm">
@@ -62,7 +63,6 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
           <div className="flex items-center space-x-4">
             <button onClick={toggleLanguage} className="flex items-center hover:text-accent">
               <Globe className="h-4 w-4 mr-1" />
-              {/* Hiển thị ngôn ngữ để chuyển sang */}
               <span>{currentLang === "vi" ? "Tiếng Việt" : "English"}</span>
             </button>
             <a href="/login" className="flex items-center hover:text-accent">
@@ -74,7 +74,7 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
       </div>
 
       {/* Main Header */}
-      <div className="bg-white border-b">
+      <div className="bg-white border-b"> {/* Giữ lại border-b nếu muốn có đường kẻ dưới phần logo */}
         <div className="container-custom py-4">
           <div className="flex flex-wrap items-center justify-between">
             {/* Logo */}
@@ -112,6 +112,7 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
       </div>
 
       {/* Navigation */}
+      {/* Bỏ các lớp sticky khỏi Nav vì Header đã xử lý */}
       <Navigation
         currentLang={currentLang}
         mobileMenuOpen={mobileMenuOpen}

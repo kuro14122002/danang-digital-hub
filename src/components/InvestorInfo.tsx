@@ -9,7 +9,7 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
   const investorItems = [
     {
       icon: FileText,
-      title: currentLang === "vi" ? "Quy trình đầu tư" : "Investment Process",
+      title: currentLang === "vi" ? "Quy trình lĩnh vực đầu tư" : "Investment field process",
       description: currentLang === "vi" 
         ? "Hướng dẫn chi tiết các bước thực hiện đầu tư" 
         : "Detailed guidance on investment steps",
@@ -17,7 +17,7 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
     },
     {
       icon: Globe,
-      title: currentLang === "vi" ? "Lĩnh vực thu hút đầu tư" : "Priority Investment Sectors",
+      title: currentLang === "vi" ? "Lĩnh vực thu hút đầu tư" : "Investment attraction areas",
       description: currentLang === "vi" 
         ? "Các ngành nghề ưu tiên thu hút đầu tư" 
         : "Priority sectors for investment",
@@ -25,7 +25,7 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
     },
     {
       icon: Map,
-      title: currentLang === "vi" ? "Quy hoạch" : "Planning",
+      title: currentLang === "vi" ? "Quy hoạch khu chức năng" : "Functional area planning",
       description: currentLang === "vi" 
         ? "Bản đồ quy hoạch các khu công nghiệp" 
         : "Industrial zone planning maps",
@@ -33,7 +33,7 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
     },
     {
       icon: SendHorizontal,
-      title: currentLang === "vi" ? "Nộp hồ sơ qua bưu điện" : "Submit via Post",
+      title: currentLang === "vi" ? "Đăng ký nộp hồ sơ qua bưu điện" : "Register to submit application by post",
       description: currentLang === "vi" 
         ? "Hướng dẫn nộp hồ sơ qua đường bưu điện" 
         : "Guidance for postal submission",
@@ -41,7 +41,7 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
     },
     {
       icon: Search,
-      title: currentLang === "vi" ? "Tra cứu TTHC" : "Administrative Procedures",
+      title: currentLang === "vi" ? "Tra cứu thủ tục hành chính" : "Look up administrative procedures",
       description: currentLang === "vi" 
         ? "Tra cứu thủ tục hành chính" 
         : "Administrative procedure lookup",

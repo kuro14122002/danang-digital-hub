@@ -12,19 +12,19 @@ const FeaturedNews = ({ currentLang }: FeaturedNewsProps) => {
   const tabs = [
     { 
       id: "investment", 
-      label: currentLang === "vi" ? "Đầu tư - Hợp tác Quốc tế" : "Investment - Int'l Cooperation" 
+      label: currentLang === "vi" ? "Đầu tư - Hợp tác Quốc tế" : "Investment - International Cooperation" 
     },
     { 
       id: "training", 
-      label: currentLang === "vi" ? "Đào tạo" : "Training" 
+      label: currentLang === "vi" ? "Đào tạo, Ươm tạo Khởi nghiệp" : "Startup Training and Incubation News" 
     },
     { 
       id: "digital", 
-      label: currentLang === "vi" ? "Chuyển đổi số" : "Digital Transformation" 
+      label: currentLang === "vi" ? "Chuyển đổi số" : "Digital Transformation News" 
     },
     { 
       id: "activities", 
-      label: currentLang === "vi" ? "Hoạt động Ban Quản lý" : "DSEZA Activities" 
+      label: currentLang === "vi" ? "Hoạt động Ban Quản lý" : "DSEZA Activities News" 
     },
     { 
       id: "other", 
