@@ -65,7 +65,7 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
       <div className="container-custom">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="card-header bg-primary text-white p-3 md:p-4">
-            <h2 className="text-lg md:text-xl font-bold">
+            <h2 className="text-base md:text-xl font-bold leading-tight">
               {currentLang === "vi" ? "Dành Cho Nhà Đầu Tư" : "For Investors"}
             </h2>
           </div>
@@ -79,11 +79,15 @@ const InvestorInfo = ({ currentLang }: InvestorInfoProps) => {
                   className="flex bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 p-3 md:p-4 group"
                 >
                   <div className="mr-3 md:mr-4 text-primary group-hover:text-primary-dark transition-colors">
-                    <item.icon size={isMobile ? 30 : 40} strokeWidth={1.5} />
+                    <item.icon size={isMobile ? 24 : 40} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-800 mb-1 group-hover:text-primary transition-colors text-sm md:text-base">{item.title}</h3>
-                    <p className="text-gray-600 text-xs md:text-sm">{item.description}</p>
+                    <h3 className="font-bold text-gray-800 mb-1 group-hover:text-primary transition-colors text-sm md:text-base leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600 text-xs md:text-sm">
+                      {item.description}
+                    </p>
                   </div>
                 </a>
               ))}

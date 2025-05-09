@@ -78,7 +78,7 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
   ];
 
   return (
-    <nav className="bg-primary text-white sticky top-0 z-50">
+    <nav className="bg-primary text-white">
       <div className="container-custom relative">
         {/* Mobile menu button - improved touch target */}
         <div className="flex items-center justify-between py-3 lg:hidden">
@@ -115,7 +115,7 @@ const Navigation = ({ currentLang, mobileMenuOpen, setMobileMenuOpen }: Navigati
                 )}
 
                 {item.submenu && (
-                  <div className="absolute left-0 hidden group-hover:block bg-white text-gray-800 shadow-lg min-w-[220px] z-50"> {/* Đảm bảo z-index ở đây cũng đủ cao nếu cần */}
+                  <div className="absolute left-0 hidden group-hover:block bg-white text-gray-800 shadow-lg min-w-[220px] z-50">
                     <ul>
                       {item.submenu.map((subitem, index) => (
                         <li key={index}>

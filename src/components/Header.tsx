@@ -1,7 +1,9 @@
+
 // src/components/Header.tsx
 import { useState, useEffect } from "react";
 import { Search, Globe, User } from "lucide-react";
 import Navigation from "./Navigation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HeaderProps {
   currentLang: string;
@@ -11,6 +13,7 @@ interface HeaderProps {
 const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,7 +24,6 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
   }, []);
 
   const formatDate = (date: Date) => {
-    // ... (code định dạng ngày tháng của bạn)
     if (currentLang === "vi") {
       const dayOfWeek = new Intl.DateTimeFormat("vi-VN", { weekday: 'long' }).format(date);
       const day = new Intl.DateTimeFormat("vi-VN", { day: 'numeric' }).format(date);
@@ -54,56 +56,55 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
   };
 
   return (
-    // ÁP DỤNG THAY ĐỔI Ở ĐÂY: làm cho toàn bộ header dính
-    <header className="w-full sticky top-0 z-50 shadow-md"> {/* Thêm shadow-md để dễ thấy hơn */}
+    <header className={isMobile ? "w-full" : "w-full sticky top-0 z-50 shadow-md"}>
       {/* Top Bar */}
       <div className="bg-primary-dark text-white">
         <div className="container-custom flex flex-wrap justify-between items-center py-2 text-sm">
-          <div>{formatDate(currentDateTime)}</div>
+          <div className="text-xs sm:text-sm">{formatDate(currentDateTime)}</div>
           <div className="flex items-center space-x-4">
-            <button onClick={toggleLanguage} className="flex items-center hover:text-accent">
-              <Globe className="h-4 w-4 mr-1" />
+            <button onClick={toggleLanguage} className="flex items-center hover:text-accent text-xs sm:text-sm">
+              <Globe className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
               <span>{currentLang === "vi" ? "Tiếng Việt" : "English"}</span>
             </button>
-            <a href="/login" className="flex items-center hover:text-accent">
-              <User className="h-4 w-4 mr-1" />
+            <a href="/login" className="flex items-center hover:text-accent text-xs sm:text-sm">
+              <User className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
               <span>{currentLang === "vi" ? "Đăng nhập" : "Login"}</span>
             </a>
           </div>
         </div>
       </div>
 
-      {/* Main Header */}
-      <div className="bg-white border-b"> {/* Giữ lại border-b nếu muốn có đường kẻ dưới phần logo */}
-        <div className="container-custom py-4">
+      {/* Main Header - Not sticky on mobile */}
+      <div className="bg-white border-b">
+        <div className="container-custom py-3 md:py-4">
           <div className="flex flex-wrap items-center justify-between">
-            {/* Logo */}
+            {/* Logo with reduced size on mobile */}
             <div className="flex items-center">
-            <img
+              <img
                 src="/media/vdyfdo3s/dzesa_logo_home_noback.png"
                 alt="Logo"
-                className="logo"
+                className="logo w-12 h-12 sm:w-auto sm:h-auto"
               />
               <div>
-                <h1 className="text-primary font-bold text-xl sm:text-2xl">
+                <h1 className="text-primary font-bold text-base sm:text-xl md:text-2xl leading-tight">
                   {currentLang === "vi" ? "BAN QUẢN LÝ KHU CÔNG NGHỆ CAO VÀ CÁC KHU CÔNG NGHIỆP ĐÀ NẴNG" : "DA NANG SPECIFIC ECONOMIC ZONES AUTHORITY"}
                 </h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-xs sm:text-sm text-gray-600">
                   {currentLang === "vi" ? "DSEZA - Đà Nẵng" : "DSEZA - Da Nang"}
                 </p>
               </div>
             </div>
 
             {/* Search */}
-            <div className="mt-4 w-full lg:mt-0 lg:w-auto lg:max-w-md">
+            <div className="mt-3 w-full lg:mt-0 lg:w-auto lg:max-w-md">
               <div className="relative">
                 <input
                   type="text"
                   placeholder={currentLang === "vi" ? "Tìm kiếm..." : "Search..."}
-                  className="w-full px-4 py-2 border rounded-full pr-10"
+                  className="w-full px-3 py-1.5 sm:px-4 sm:py-2 border rounded-full pr-10 text-sm"
                 />
-                <button className="absolute right-3 top-2.5">
-                  <Search className="h-5 w-5 text-gray-500" />
+                <button className="absolute right-3 top-1.5 sm:top-2.5">
+                  <Search className="h-4 w-4 sm:h-5 sm:w-5 text-gray-500" />
                 </button>
               </div>
             </div>
@@ -111,13 +112,14 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
         </div>
       </div>
 
-      {/* Navigation */}
-      {/* Bỏ các lớp sticky khỏi Nav vì Header đã xử lý */}
-      <Navigation
-        currentLang={currentLang}
-        mobileMenuOpen={mobileMenuOpen}
-        setMobileMenuOpen={setMobileMenuOpen}
-      />
+      {/* Navigation - This remains sticky on both mobile and desktop */}
+      <div className="sticky top-0 z-50"> {/* This wrapper makes only the Navigation sticky */}
+        <Navigation
+          currentLang={currentLang}
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+        />
+      </div>
     </header>
   );
 };
