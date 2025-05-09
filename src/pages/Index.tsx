@@ -9,9 +9,18 @@ import InvestorInfo from "../components/InvestorInfo";
 import InvestmentEnv from "../components/InvestmentEnv";
 import Footer from "../components/Footer";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ChevronDown } from "lucide-react";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 const Index = () => {
   const [currentLang, setCurrentLang] = useState("vi");
+  const [utilitiesOpen, setUtilitiesOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const handleLanguageChange = (lang: string) => {
@@ -102,23 +111,48 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Utilities Grid - better mobile layout */}
+        {/* Utilities Grid - with dropdown for mobile */}
         <section className="py-6 md:py-10 bg-light">
           <div className="container-custom">
             <h2 className="text-xl md:text-2xl font-bold text-center mb-4 md:mb-8">
               {currentLang === "vi" ? "Tiện Ích" : "Utilities"}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-              {utilityLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="bg-white border rounded-md p-3 text-center hover:shadow-md transition-shadow flex items-center justify-center h-14 md:h-16"
-                >
-                  <span className="text-primary font-medium text-sm md:text-base">{link.label}</span>
-                </a>
-              ))}
-            </div>
+            
+            {/* Mobile dropdown version */}
+            {isMobile ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="w-full bg-white border rounded-md p-3 flex items-center justify-between">
+                  <span className="text-primary font-medium">
+                    {currentLang === "vi" ? "Xem các tiện ích" : "View utilities"}
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-primary" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[calc(100vw-2rem)] bg-white">
+                  <DropdownMenuGroup>
+                    {utilityLinks.map((link, index) => (
+                      <DropdownMenuItem key={index} asChild>
+                        <a href={link.href} className="w-full cursor-pointer">
+                          {link.label}
+                        </a>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              // Desktop grid version
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                {utilityLinks.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link.href}
+                    className="bg-white border rounded-md p-3 text-center hover:shadow-md transition-shadow flex items-center justify-center h-14 md:h-16"
+                  >
+                    <span className="text-primary font-medium text-sm md:text-base">{link.label}</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 

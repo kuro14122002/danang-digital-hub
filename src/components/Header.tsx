@@ -78,8 +78,8 @@ const Header = ({ currentLang, onLanguageChange }: HeaderProps) => {
       <div className="bg-white border-b">
         <div className="container-custom py-3 md:py-4">
           <div className="flex flex-wrap items-center justify-between">
-            {/* Logo with reduced size on mobile */}
-            <div className="flex items-center">
+            {/* Logo - hidden on mobile */}
+            <div className="hidden sm:flex items-center">
               <img
                 src="/media/vdyfdo3s/dzesa_logo_home_noback.png"
                 alt="Logo"
